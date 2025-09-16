@@ -1,11 +1,17 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 export const usePosts = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
-  
   const [error, setError] = useState(null);
+  const isFetching = useRef(false);
+
   useEffect(() => {
+    // Prevent duplicate calls
+    if (isFetching.current) return;
+    
+    isFetching.current = true;
+
     const fetchPosts = async () => {
       try {
         setLoading(true);
@@ -15,9 +21,10 @@ export const usePosts = () => {
         const result = await response.json();
         setData(result);
       } catch (err) {
-        setError(err);
+        setError(err.message);
       } finally {
         setLoading(false);
+        isFetching.current = false;
       }
     };
 

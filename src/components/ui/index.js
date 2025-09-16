@@ -1,3 +1,3 @@
-export { Loader, ErrorMessage } from './common/index.js';
+export { Loader, ErrorMessage, BackButton } from './common/index.js';
 
 export { PostCard } from './post/index.js';

@@ -1,11 +1,17 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 export const usePostsByAuthor = (authorId) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const isFetching = useRef(false);
 
   useEffect(() => {
+    // Prevent duplicate calls
+    if (isFetching.current || !authorId) return;
+    
+    isFetching.current = true;
+
     const fetchAuthorPosts = async () => {
       try {
         setLoading(true);
@@ -18,12 +24,11 @@ export const usePostsByAuthor = (authorId) => {
         setError(err.message);
       } finally {
         setLoading(false);
+        isFetching.current = false;
       }
     };
 
-    if (authorId) {
-      fetchAuthorPosts();
-    }
+    fetchAuthorPosts();
   }, [authorId]);
 
   return { data, loading, error };

@@ -1,7 +1,7 @@
 import React from 'react';
 import { handleApiError } from '../../../utils/errorHandler.js';
 
-const ErrorMessage = ({ error, onGoBack }) => {
+const ErrorMessage = ({ error }) => {
   const errorMessage = handleApiError(error);
 
   return (
@@ -9,7 +9,7 @@ const ErrorMessage = ({ error, onGoBack }) => {
       <h2 className="text-2xl mb-4 text-red-400">Error</h2>
       <p className="mb-4">{errorMessage}</p>
       {onGoBack && (
-        <button 
+        <button
           onClick={onGoBack}
           className="bg-gray-500 hover:bg-gray-600 text-white px-6 py-3 rounded-lg font-medium transition-colors"
         >
