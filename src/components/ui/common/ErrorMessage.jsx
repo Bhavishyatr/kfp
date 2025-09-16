@@ -1,7 +1,7 @@
 import React from 'react';
 import { handleApiError } from '../../../utils/errorHandler.js';
 
-const ErrorMessage = ({ error }) => {
+const ErrorMessage = ({ error, onGoBack }) => {
   const errorMessage = handleApiError(error);
 
   return (
