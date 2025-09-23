@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import AuthorPostsPage from '../AuthorPostsPage/AuthorPostsPage.jsx';
+import AuthorPostsPage from '../AuthorPostsPage.jsx';
 
 test('renders Posts by Author heading', () => {
     render(<AuthorPostsPage />);
